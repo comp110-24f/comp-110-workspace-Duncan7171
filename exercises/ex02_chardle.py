@@ -60,7 +60,15 @@ def contains_char(word: str, letter: str) -> None:
         print(letter + " found at index 4")
         number += 1
         # Same funtionalty as code in previous if statement
-    print(str(number) + " instances of " + letter + " found in " + word)
+    if number == 0:
+        print("No instances of " + letter + " found in " + word)
+        # Print statment if character not found in word
+    elif number == 1:
+        print(str(number) + " instance of " + letter + " found in " + word)
+        # Print statment if character found once in word
+    else:
+        print(str(number) + " instances of " + letter + " found in " + word)
+        # Print statment if character found more thab once in word
 
 
 def main() -> None:
