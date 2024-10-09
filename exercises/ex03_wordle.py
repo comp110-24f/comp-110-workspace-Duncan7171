@@ -6,15 +6,17 @@ __author__ = "730745874"
 def input_guess(secret_word_length: int) -> str:
     """This is where we will make sure the user imputs a guess
     the same lenght as the secret word"""
-    guess: str = input(f"Enter a {secret_word_length} character word: ")
+    user_guess: str = input(f"Enter a {secret_word_length} character word: ")
     # Makeing a local variable for the users guess, and statement telling
     # user what to do
-    while len(guess) != secret_word_length:
-        guess: str = input(
-            f"That wasn't a {secret_word_length} chars! Try again: {guess}"
+    while len(user_guess) != secret_word_length:
+        # Starts a while loop looking at length of guess compared to length
+        # of secret word
+        user_guess = input(
+            f"That wasn't {secret_word_length} chars! Try again: {user_guess}"
         )
         # Prompts user to make guess of correct length.
-    return guess
+    return user_guess
 
 
 def contains_char(secret_word: str, char_guess: str) -> bool:
@@ -39,9 +41,11 @@ def emojified(guess: str, secret: str) -> str:
     then returning emojies to tell what letters were correct"""
     assert len(guess) == len(secret)
     WHITE_BOX: str = "\U00002B1C"
+    # Code for a white box emoji
     GREEN_BOX: str = "\U0001F7E9"
+    # Code for a green box emoji
     YELLOW_BOX: str = "\U0001F7E8"
-    # These are the codes for each emoji needed
+    # Code for yellow box emoji
     index: int = 0
     emojis: str = ""
     # This is where we will build out emojis together
@@ -62,15 +66,17 @@ def emojified(guess: str, secret: str) -> str:
 def main(secret: str) -> None:
     """The entrypoint of the program and main game loop."""
     turn: int = 1
-    while turn < 7:
+    won = False
+    while turn < 7 and won is False:
         print(f"== Turn {turn}/6 ==")
+        # Printing what turn user is on
         guess = input_guess(secret_word_length=len(secret))
         # Taking in imput guess and setting secret_word_length equal to
-        # length of secet
+        # length of secret
         print(emojified(guess=guess, secret=secret))
         if secret == guess:
             print(f"You won in {turn}/6 turns!")
-            break  # If the user ever gets it this will exit the loop
+            won = True
         turn += 1
     if turn >= 7:
         print("X/6 - Sorry, try again tomorrow!")
