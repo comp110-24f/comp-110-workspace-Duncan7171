@@ -1,3 +1,6 @@
-names: list[str] = ["Alyssa", "Janet", "Vrinda"]
-for idx in range(0, len(names)):
-    print(str(idx) + ": " + names[idx])
+x = 42  # Global variable
+
+
+def print_global():
+    x += 4
+    print(x)  # References the global variable
